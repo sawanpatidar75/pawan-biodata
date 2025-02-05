@@ -38,7 +38,7 @@
 
         .container {
             max-width: 800px;
-            margin: 50px auto;
+            margin: 20px auto;
             padding: 20px;
             background: #fff;
             border-radius: 15px;
@@ -91,22 +91,60 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
         }
 
-        /* Responsive Design */
+        /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem;
+                font-size: 2rem; /* Smaller font size for mobile */
             }
 
             h2 {
-                font-size: 1.5rem;
+                font-size: 1.5rem; /* Smaller font size for mobile */
             }
 
             .container {
-                padding: 15px;
+                padding: 15px; /* Reduce padding for smaller screens */
+                margin: 10px; /* Reduce margin for smaller screens */
             }
 
             .section {
-                padding: 15px;
+                padding: 15px; /* Reduce padding for smaller screens */
+            }
+
+            .section ul li {
+                padding: 8px; /* Reduce padding for list items */
+                font-size: 0.9rem; /* Smaller font size for list items */
+            }
+
+            img {
+                margin: 8px 0; /* Reduce margin for images */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem; /* Even smaller font size for very small screens */
+            }
+
+            h2 {
+                font-size: 1.3rem; /* Even smaller font size for very small screens */
+            }
+
+            .container {
+                padding: 10px; /* Further reduce padding for very small screens */
+                margin: 5px; /* Further reduce margin for very small screens */
+            }
+
+            .section {
+                padding: 10px; /* Further reduce padding for very small screens */
+            }
+
+            .section ul li {
+                padding: 6px; /* Further reduce padding for list items */
+                font-size: 0.85rem; /* Further reduce font size for list items */
+            }
+
+            img {
+                margin: 6px 0; /* Further reduce margin for images */
             }
         }
     </style>
