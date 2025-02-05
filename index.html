@@ -3,97 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>पवन पाटीदार का बायोडाटा</title>
+    <title>बायोडाटा</title>
     <style>
+        /* General Styles */
         body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            margin: 20px;
-            background-color: #f4f4f4;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
             color: #333;
         }
+
         h1, h2 {
             color: #444;
         }
-        .section {
-            background: #fff;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #34495e;
+            border-bottom: 2px solid #3498db;
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
         .section ul {
             list-style-type: none;
             padding: 0;
         }
+
         .section ul li {
             margin: 10px 0;
+            padding: 10px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s ease;
         }
+
+        .section ul li:hover {
+            background: #f1f1f1;
+        }
+
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 8px;
+            border-radius: 10px;
+            margin: 10px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        img:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 15px;
+            }
+
+            .section {
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
-    <h1>पवन पाटीदार का बायोडाटा</h1>
+    <div class="container">
+        <h1>बायोडाटा</h1>
 
-    <div class="section">
-        <h2>व्यक्तिगत जानकारी</h2>
-        <ul>
-            <li><strong>नाम:</strong> पवन पाटीदार</li>
-            <li><strong>पता:</strong> ग्राम नान्द्रा, तहसील महेश्वर, जिला खरगोन, म.प्र.</li>
-            <li><strong>गोत्र:</strong> चौपड़ा</li>
-            <li><strong>जन्म तिथि:</strong> 11 फरवरी 2003</li>
-            <li><strong>ऊंचाई:</strong> 5 फीट 8 इंच</li>
-            <li><strong>शिक्षा:</strong> स्नातक (B.A.)</li>
-            <li><strong>व्यवसाय:</strong> कृषि</li>
-            <li><strong>कृषि यंत्र:</strong> ट्रैक्टर</li>
-        </ul>
-    </div>
+        <!-- Personal Information -->
+        <div class="section">
+            <h2>व्यक्तिगत जानकारी</h2>
+            <ul>
+                <li><strong>नाम:</strong> पवन पाटीदार</li>
+                <li><strong>पता:</strong> ग्राम नान्द्रा, तहसील महेश्वर, जिला खरगोन, म.प्र.</li>
+                <li><strong>गोत्र:</strong> चौपड़ा</li>
+                <li><strong>जन्म तिथि:</strong> 11 फरवरी 2003</li>
+                <li><strong>ऊंचाई:</strong> 5 फीट 8 इंच</li>
+                <li><strong>शिक्षा:</strong> स्नातक (B.A.)</li>
+                <li><strong>व्यवसाय:</strong> कृषि</li>
+                <li><strong>कृषि यंत्र:</strong> ट्रैक्टर</li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>पारिवारिक विवरण</h2>
-        <ul>
-            <li><strong>दादाजी:</strong> श्री धन्नालालजी पाटीदार (चौपड़ा)</li>
-            <li><strong>पिता:</strong> श्री विष्णु पाटीदार</li>
-            <li><strong>माता:</strong> श्रीमती सीमा पाटीदार</li>
-            <li><strong>बहन:</strong> चेतना पाटीदार (विवाहित)</li>
-            <li><strong>नानाजी:</strong> श्री जगदीशजी मालक</li>
-            <li><strong>बड़े पापा:</strong> श्री ओमप्रकाश जी पाटीदार</li>
-            <li><strong>बड़ी मम्मी:</strong> श्रीमती मंजुला पाटीदार</li>
-            <li><strong>भाई-भाभी:</strong> सावन पाटीदार व निधि पाटीदार</li>
-            <li><strong>दीदी:</strong> सोनाली पाटीदार (विवाहित)</li>
-        </ul>
-    </div>
+        <!-- Family Details -->
+        <div class="section">
+            <h2>पारिवारिक विवरण</h2>
+            <ul>
+                <li><strong>दादाजी:</strong> श्री धन्नालालजी पाटीदार (चौपड़ा)</li>
+                <li><strong>पिता:</strong> श्री विष्णु पाटीदार</li>
+                <li><strong>माता:</strong> श्रीमती सीमा पाटीदार</li>
+                <li><strong>बहन:</strong> चेतना पाटीदार (विवाहित)</li>
+                <li><strong>नानाजी:</strong> श्री जगदीशजी मालक</li>
+                <li><strong>बड़े पापा:</strong> श्री ओमप्रकाश जी पाटीदार</li>
+                <li><strong>बड़ी मम्मी:</strong> श्रीमती मंजुला पाटीदार</li>
+                <li><strong>भाई-भाभी:</strong> सावन पाटीदार व निधि पाटीदार</li>
+                <li><strong>दीदी:</strong> सोनाली पाटीदार (विवाहित)</li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>संपत्ति विवरण</h2>
-        <ul>
-            <li><strong>भूमि:</strong> 20 बीघा</li>
-            <li><strong>मकान:</strong> 3</li>
-            <li><strong>प्लॉट:</strong>
-                <ul>
-                    <li>1 प्लॉट - 6000 स्क्वायर फीट</li>
-                    <li>2 प्लॉट - 5500 स्क्वायर फीट</li>
-                </ul>
-            </li>
-        </ul>
-    </div>
+        <!-- Property Details -->
+        <div class="section">
+            <h2>संपत्ति विवरण</h2>
+            <ul>
+                <li><strong>भूमि:</strong> 20 बीघा</li>
+                <li><strong>मकान:</strong> 3</li>
+                <li><strong>प्लॉट:</strong>
+                    <ul>
+                        <li>1 प्लॉट - 6000 स्क्वायर फीट</li>
+                        <li>2 प्लॉट - 5500 स्क्वायर फीट</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>संपर्क करें</h2>
-        <ul>
-            <li><strong>मोबाइल:</strong> 9669143182, 8959290662</li>
-        </ul>
-    </div>
+        <!-- Contact Details -->
+        <div class="section">
+            <h2>संपर्क करें</h2>
+            <ul>
+                <li><strong>मोबाइल:</strong> 9669143182, 8959290662</li>
+            </ul>
+        </div>
 
-    <div class="section">
-        <h2>फोटो</h2>
-        <img src="images/photo1.jpeg" alt="Photo 1">
-        <img src="images/photo2.jpeg" alt="Photo 2">
-        <img src="images/photo3.jpeg" alt="Photo 2">
+        <!-- Photos -->
+        <div class="section">
+            <h2>फोटो</h2>
+            <img src="images/photo1.jpeg" alt="Photo 1">
+            <img src="images/photo2.jpeg" alt="Photo 2">
+            <img src="images/photo3.jpeg" alt="Photo 3">
+        </div>
     </div>
 </body>
 </html>
