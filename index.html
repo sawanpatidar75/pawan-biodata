@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
     <title>बायोडाटा</title>
     <style>
         /* General Styles */
@@ -223,7 +222,7 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="biodataContainer">
         <!-- Download Icon -->
         <div class="download-icon" onclick="downloadBiodata()">⬇️</div>
 
@@ -233,7 +232,6 @@
         <div class="section">
             <h2>व्यक्तिगत जानकारी</h2>
             <ul>
-                <li><strong>नाम:</strong> पवन पाटीदार</li>
                 <li><strong>नाम:</strong> पवन पाटीदार</li>
                 <li><strong>पता:</strong> ग्राम नान्द्रा, तहसील महेश्वर, जिला खरगोन, म.प्र.</li>
                 <li><strong>गोत्र:</strong> चौपड़ा</li>
@@ -306,22 +304,20 @@
         </div>
     </div>
 
+    <!-- Include html2canvas library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script>
         // Function to download biodata as an image
         function downloadBiodata() {
-            var node = document.querySelector('.container');
-
-            htmlToImage.toJpeg(node, { quality: 0.95 })
-                .then(function (dataUrl) {
-                    var link = document.createElement('a');
-                    link.href = dataUrl;
-                    link.download = 'biodata.jpeg';
-                    link.click();
-                })
-                .catch(function (error) {
-                    console.error('An error occurred while generating the image:', error);
-                });
+            const container = document.getElementById('biodataContainer');
+            html2canvas(container).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'biodata.png';
+                link.click();
+            });
         }
+
         // Image gallery functionality
         let currentIndex = 0;
         const images = ["images/photo1.jpeg", "images/photo2.jpeg", "images/photo3.jpeg"];
