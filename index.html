@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
     <title>बायोडाटा</title>
     <style>
         /* General Styles */
@@ -43,6 +44,16 @@
             background: #fff;
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .download-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #3498db;
         }
 
         .section {
@@ -77,86 +88,152 @@
             background: #f1f1f1;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            margin: 10px 0;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
-        img:hover {
-            transform: scale(1.02);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        .gallery img {
+            width: 100px;
+            height: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        /* Full-screen image viewer */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .modal img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close, .prev, .next, .download {
+            position: absolute;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .close {
+            top: 20px;
+            right: 30px;
+        }
+
+        .prev {
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .next {
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .download {
+            bottom: 20px;
+            right: 30px;
+            font-size: 24px;
         }
 
         /* Responsive Design for Mobile */
         @media (max-width: 768px) {
             h1 {
-                font-size: 2rem; /* Smaller font size for mobile */
+                font-size: 2rem;
             }
 
             h2 {
-                font-size: 1.5rem; /* Smaller font size for mobile */
+                font-size: 1.5rem;
             }
 
             .container {
-                padding: 15px; /* Reduce padding for smaller screens */
-                margin: 10px; /* Reduce margin for smaller screens */
+                padding: 15px;
+                margin: 10px;
             }
 
             .section {
-                padding: 15px; /* Reduce padding for smaller screens */
+                padding: 15px;
             }
 
             .section ul li {
-                padding: 8px; /* Reduce padding for list items */
-                font-size: 0.9rem; /* Smaller font size for list items */
+                padding: 8px;
+                font-size: 0.9rem;
             }
 
-            img {
-                margin: 8px 0; /* Reduce margin for images */
+            .gallery img {
+                width: 80px;
+                height: 80px;
             }
         }
 
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.8rem; /* Even smaller font size for very small screens */
+                font-size: 1.8rem;
             }
 
             h2 {
-                font-size: 1.3rem; /* Even smaller font size for very small screens */
+                font-size: 1.3rem;
             }
 
             .container {
-                padding: 10px; /* Further reduce padding for very small screens */
-                margin: 5px; /* Further reduce margin for very small screens */
+                padding: 10px;
+                margin: 5px;
             }
 
             .section {
-                padding: 10px; /* Further reduce padding for very small screens */
+                padding: 10px;
             }
 
             .section ul li {
-                padding: 6px; /* Further reduce padding for list items */
-                font-size: 0.85rem; /* Further reduce font size for list items */
+                padding: 6px;
+                font-size: 0.85rem;
             }
 
-            img {
-                margin: 6px 0; /* Further reduce margin for images */
+            .gallery img {
+                width: 60px;
+                height: 60px;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Download Icon -->
+        <div class="download-icon" onclick="downloadBiodata()">⬇️</div>
+
         <h1>बायोडाटा</h1>
 
         <!-- Personal Information -->
         <div class="section">
             <h2>व्यक्तिगत जानकारी</h2>
             <ul>
+                <li><strong>नाम:</strong> पवन पाटीदार</li>
                 <li><strong>नाम:</strong> पवन पाटीदार</li>
                 <li><strong>पता:</strong> ग्राम नान्द्रा, तहसील महेश्वर, जिला खरगोन, म.प्र.</li>
                 <li><strong>गोत्र:</strong> चौपड़ा</li>
@@ -210,10 +287,71 @@
         <!-- Photos -->
         <div class="section">
             <h2>फोटो</h2>
-            <img src="images/photo1.jpeg" alt="Photo 1">
-            <img src="images/photo2.jpeg" alt="Photo 2">
-            <img src="images/photo3.jpeg" alt="Photo 3">
+            <div class="gallery">
+                <img src="images/photo1.jpeg" alt="Photo 1" onclick="openModal(0)">
+                <img src="images/photo2.jpeg" alt="Photo 2" onclick="openModal(1)">
+                <img src="images/photo3.jpeg" alt="Photo 3" onclick="openModal(2)">
+            </div>
         </div>
     </div>
+
+    <!-- Full-screen Image Viewer -->
+    <div class="modal" id="imageModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <span class="prev" onclick="prevImage()">&#10094;</span>
+        <span class="next" onclick="nextImage()">&#10095;</span>
+        <span class="download" onclick="downloadCurrentImage()">⬇️</span>
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="Full-size Image">
+        </div>
+    </div>
+
+    <script>
+        // Function to download biodata as an image
+        function downloadBiodata() {
+            var node = document.querySelector('.container');
+
+            htmlToImage.toJpeg(node, { quality: 0.95 })
+                .then(function (dataUrl) {
+                    var link = document.createElement('a');
+                    link.href = dataUrl;
+                    link.download = 'biodata.jpeg';
+                    link.click();
+                })
+                .catch(function (error) {
+                    console.error('An error occurred while generating the image:', error);
+                });
+        }
+        // Image gallery functionality
+        let currentIndex = 0;
+        const images = ["images/photo1.jpeg", "images/photo2.jpeg", "images/photo3.jpeg"];
+
+        function openModal(index) {
+            currentIndex = index;
+            document.getElementById('modalImage').src = images[currentIndex];
+            document.getElementById('imageModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('modalImage').src = images[currentIndex];
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('modalImage').src = images[currentIndex];
+        }
+
+        function downloadCurrentImage() {
+            const link = document.createElement('a');
+            link.href = images[currentIndex];
+            link.download = `photo${currentIndex + 1}.jpeg`;
+            link.click();
+        }
+    </script>
 </body>
 </html>
